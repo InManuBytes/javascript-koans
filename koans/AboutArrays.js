@@ -86,13 +86,13 @@ describe("About Arrays", function() {
   });
 
   it("should know about shifting arrays", function() {
-    var array = [1, 2];
+    let array = [1, 2];
 
     array.unshift(3);
-    expect(array).toEqual(FILL_ME_IN);
+    expect(array).toEqual([3, 1, 2]);
     
-    var shiftedValue = array.shift();
-    expect(shiftedValue).toEqual(FILL_ME_IN);
-    expect(array).toEqual(FILL_ME_IN);
+    let shiftedValue = array.shift();
+    expect(shiftedValue).toEqual(3);
+    expect(array).toEqual([1, 2]);
   });  
 });
