@@ -57,21 +57,21 @@ describe("About Arrays", function() {
   });
 
   it("should know array references", function() {
-    var array = [ "zero", "one", "two", "three", "four", "five" ];
+    let array = [ "zero", "one", "two", "three", "four", "five" ];
 
     function passedByReference(refArray) {
       refArray[1] = "changed in function";
     }
     passedByReference(array);
-    expect(array[1]).toBe(FILL_ME_IN);
+    expect(array[1]).toBe('changed in function');
 
-    var assignedArray = array;
+    let assignedArray = array;
     assignedArray[5] = "changed in assignedArray";
-    expect(array[5]).toBe(FILL_ME_IN);
+    expect(array[5]).toBe('changed in assignedArray');
 
     var copyOfArray = array.slice();
     copyOfArray[3] = "changed in copyOfArray";
-    expect(array[3]).toBe(FILL_ME_IN);
+    expect(array[3]).toBe('three');
   });
 
   it("should push and pop", function() {
