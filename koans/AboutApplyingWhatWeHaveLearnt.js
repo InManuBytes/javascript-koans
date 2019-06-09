@@ -20,25 +20,26 @@ describe("About Applying What We Have Learnt", function() {
 
     for (i = 0; i < products.length; i+=1) {
         if (products[i].containsNuts === false) {
-            hasMushrooms = false;
+            hasMushrooms = false;//resets so it can check for mushrooms for every type of pizza
             for (j = 0; j < products[i].ingredients.length; j+=1) {
                if (products[i].ingredients[j] === "mushrooms") {
                   hasMushrooms = true;
                }
             }
-            if (!hasMushrooms) productsICanEat.push(products[i]);
+            if (!hasMushrooms) productsICanEat.push(products[i]);//adds key, or pizza name to the array
         }
     }
 
-    expect(productsICanEat.length).toBe(FILL_ME_IN);
+    expect(productsICanEat.length).toBe(1); //only the Pizza Primavera
   });
 
   it("given I'm allergic to nuts and hate mushrooms, it should find a pizza I can eat (functional)", function () {
       var productsICanEat = [];
-
-      /* solve using filter() & all() / any() */
-
-      expect(productsICanEat.length).toBe(FILL_ME_IN);
+      /* solve using filter() & all() / any() - these last two functions have changed to some() and every() */
+      var hasMushrooms = function (toppings) {return toppings === 'mushrooms'};
+      var noNutsOrMushrooms = products.filter(function (pizza) {return pizza.containsNuts === false && pizza.ingredients.some(hasMushrooms) === false});
+      productsICanEat.push(noNutsOrMushrooms);
+      expect(productsICanEat.length).toBe(1);
   });
 
   /*********************************************************************************/
