@@ -37,7 +37,7 @@ describe("About Applying What We Have Learnt", function() {
       var productsICanEat = [];
       /* solve using filter() & all() / any() - these last two functions have changed to some() and every() */
       var hasMushrooms = function (toppings) {return toppings === 'mushrooms'};
-      var noNutsOrMushrooms = products.filter(function (pizza) {return pizza.containsNuts === false && pizza.ingredients.some(hasMushrooms) === false});
+      var noNutsOrMushrooms = products.filter((pizza) => {return pizza.containsNuts === false && pizza.ingredients.some(hasMushrooms) === false});
       productsICanEat.push(noNutsOrMushrooms);
       expect(productsICanEat.length).toBe(1);
   });
@@ -59,8 +59,8 @@ describe("About Applying What We Have Learnt", function() {
   it("should add all the natural numbers below 1000 that are multiples of 3 or 5 (functional)", function () {
     var naturalNumbersto1000 = _.range(1,1000);//natural numbers below 1000
     var sum = _(naturalNumbersto1000).chain() /* try chaining range() and reduce() */
-      .filter(function(number){return number % 3 ===0 || number % 5 === 0}) //filter for multiples of 3 or 5
-      .reduce(function(runningsum, number){return runningsum+number;}) //add those multiples
+      .filter((number) => {return number % 3 ===0 || number % 5 === 0}) //filter for multiples of 3 or 5
+      .reduce((runningsum, number) => {return runningsum+number;}) //add those multiples
       .value();  //chain syntax
     expect(233168).toBe(sum);
   });
@@ -80,8 +80,19 @@ describe("About Applying What We Have Learnt", function() {
 
   it("should count the ingredient occurrence (functional)", function () {
     /* chain() together map(), flatten() and reduce() */
+    let ingredientCount = { "{ingredient name}": 0 };
+    let ingredients = _(products).chain()
+      .map(pizza => pizza.ingredients)
+      .flatten()
+      .reduce((count, ingredient) => {
+        if (!ingredientCount[ingredient]){
+          ingredientCount[ingredient] = 1
+        } else {
+          ingredientCount[ingredient] = ingredientCount[ingredient]+1;
+        }; return count;},{}) 
+      .value();
 
-    expect(ingredientCount['mushrooms']).toBe(ingredients);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
